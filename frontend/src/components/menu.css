@@ -1,0 +1,63 @@
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+
+
+.menuApp {
+  display: grid;
+  grid-template-rows: 15% 80% 5%;
+  height: 100vh;
+  overflow: hidden;
+}
+
+/* header */
+.header {
+  display: grid;
+  grid-template-columns: auto auto auto;
+  text-align: center;
+  align-items: center;
+  padding: 20px;
+  font-family: 'Press Start 2P', cursive;
+  font-size: 12px;
+  text-align: center;
+}
+
+.leftNavbar, .rightNavbar {
+  display: grid; 
+  grid-template-columns: auto auto auto;
+  gap: 5px;
+}
+ 
+.tetris-btn {
+  color: white;
+  border: 1px solid #174c8b;
+  padding: 10px 12px;
+  margin: 5px;
+  box-shadow: 2px 2px 0px rgba(0, 0, 0, 0.8);
+  transition: all 0.1s ease-in-out;
+  cursor: pointer;
+  text-align: center;
+}
+
+.tetris-btn:hover {
+  transform: translateY(-2px);
+  filter: brightness(1.2);
+}
+
+
+.btn1, .btn2, .btn3, .btn4, .btn5, .btn6 {
+  /* background-color: blueviolet; */
+}
+ 
+.titleCompany {
+  display: grid;
+  grid-template-rows: auto auto;
+  gap: 10px;
+}
+
+
+      /* footer */
+.footer {
+  display: flex;
+  width: 100%;
+  margin-top: 5px;
+  /* background-color: green; */
+}
