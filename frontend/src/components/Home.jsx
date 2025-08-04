@@ -10,6 +10,7 @@ const Home = () => {
   const [flip, setFlip] = useState(false);
   const [rotate, setRotate] = useState(0);
   const [longText, setLongText] = useState(`Halo ${userData.username}! Kita telah melintasi batas atmosfer. Pemandangan dari sini... sungguh menakjubkan!`);
+  
 
   useEffect(() => {
     const messages = [

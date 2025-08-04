@@ -29,12 +29,15 @@ function LoginForm() {
           id: data.id,
           username: data.username,
           email: data.email,
+          token: data.token
         };
         localStorage.setItem('user', JSON.stringify(userData));
+        localStorage.setItem('token', data.token); 
         setTimeout(() => {
           navigate('/menu');
         }, 2000);
       }
+      
     } catch (err) {
       setMsg('Gagal login');
     }

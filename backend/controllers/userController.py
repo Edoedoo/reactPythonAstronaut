@@ -1,9 +1,12 @@
-from flask import Blueprint, request, jsonify
+from flask import Blueprint, request, jsonify, current_app, g
 import models.userModel as userModel
+import jwt
+import datetime
+from middleware.middlewareRoute import token_required
 
 userBp = Blueprint('userBp', __name__)
+SECRET_KEY = "EC_3000_**"
 
-        # ====== LOGIN ====== 
 @userBp.route('/login', methods=['POST'])
 def loginUser():
     data = request.get_json()
@@ -12,18 +15,36 @@ def loginUser():
     user = userModel.loginUser(username, password)
     
     if user:
+        payload = {
+            'id': user['id'],
+            'username': user['username'],
+            'exp': datetime.datetime.utcnow() + datetime.timedelta(hours=1)
+        }
+        token = jwt.encode(payload, current_app.config['SECRET_KEY'], algorithm='HS256')
+
         return jsonify({
-            'message': f'astronaut siap, pakai helm mu {user['username']}!',
+            'message': f"astronaut siap, pakai helm mu {user['username']}!",
             'success': True,
             'id': user['id'],
             'email': user['email'],
-            'username': user['username']
+            'username': user['username'],
+            'token': token
         })
     else:
         return jsonify({
             'message': 'nama atau token salah',
             'success': False
         })
+
+@userBp.route('/profile', methods=['GET'])
+@token_required
+def getProfile():
+    user_data = g.user
+    return jsonify({
+        'message': 'Data user berhasil diambil',
+        'user': user_data
+    })
+
 
 
 
