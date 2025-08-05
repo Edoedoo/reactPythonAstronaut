@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './login.css';
 import png from '../src/assets/loginForm.png'
@@ -11,6 +11,13 @@ function LoginForm() {
   const navigate = useNavigate();
 
   const longText = "selamat datang di stasiun luar angkasa";
+
+  useEffect(() => {
+    const user = localStorage.getItem('user');
+    if (user) {
+      navigate('/menu');
+    }
+  }, [navigate]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
